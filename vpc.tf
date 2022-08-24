@@ -7,7 +7,7 @@ resource "aws_vpc" "redflag" {
   }
 }
 
-resource "aws_subnet" "redflag-sub" {
+resource "aws_subnet" "red-sub" {
   vpc_id                                         = aws_vpc.redflag.id
   cidr_block                                     = "170.0.0.0/17"
   availability_zone                              = "us-east-1b"
