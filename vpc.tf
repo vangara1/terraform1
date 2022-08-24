@@ -18,3 +18,7 @@ resource "aws_subnet" "redflag-sub" {
     Name = "redflag-sub"
   }
 }
+
+provider "aws" {
+  region = "us-east-1"
+}
