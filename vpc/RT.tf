@@ -1,12 +1,20 @@
-resource "aws_route_table" "redflag-rt" {
+resource "aws_route_table" "route" {
   vpc_id = aws_vpc.vpc.id
+  route  = [
+    {
+      cidr_block                = var.DEFAULT_VPC
+      vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+    }
+  ]
   tags = {
-    Name = "example"
+    Name = "route"
   }
 }
 
-
-resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.subnets.id
-  route_table_id = aws_route_table.redflag-rt.id
+resource "aws_route" "route-default-vpc" {
+  count = length(local.association-list)
+  route_table_id = tomap(element(local.association-list, count.index))["route_table"]
+  destination_cidr_block = tomap(element(local.association-list, count.index))["cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
 }
+
