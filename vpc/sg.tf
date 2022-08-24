@@ -1,14 +1,14 @@
 resource "aws_security_group" "redflag" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.redflag.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description      = "TLS from VPC"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.redflag.cidr_block]
+    cidr_blocks      = [aws_vpc.vpc.cidr_block]
 
   }
 
