@@ -10,6 +10,7 @@ DEFAULT_VPC     = "vpc-0a3a2e72296745c4b"
 
 
 
+
 #the below cidr and subnets are to have more than two vpc and subnets
 #VPC_CIDR_ADDON = ["190.1.0.0/16]"]
 #SUBNETS        = ["190.0.0.0/17", "190.0.128.0/17", "190.1.0.0/17", "190.1.128.0/17"]
