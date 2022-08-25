@@ -1,4 +1,4 @@
-resource "aws_security_group" "redflag" {
+resource "aws_security_group" "sg" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.vpc.id
@@ -21,6 +21,6 @@ resource "aws_security_group" "redflag" {
   }
 
   tags = {
-    Name = "redflag"
+    Name = "sg"
   }
 }
