@@ -28,7 +28,7 @@ resource "aws_route_table" "rt" {
   vpc_id = aws_vpc.sandy.id
 
   route {
-    cidr_block = aws_vpc.sandy.id
+    cidr_block = aws_subnet.sandy.cidr_block
        gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
