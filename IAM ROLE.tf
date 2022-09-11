@@ -1,5 +1,5 @@
 resource "aws_iam_role" "role" {
-  name = "instance_role"
+  name = "sandy_role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -14,7 +14,11 @@ resource "aws_iam_role" "role" {
       },
     ]
   })
+
+  tags = {
+    tag-key = "role"
   }
+}
 
 
 #resource "aws_iam_role" "role" {
