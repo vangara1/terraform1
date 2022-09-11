@@ -11,7 +11,7 @@ resource "aws_iam_role" "role" {
         Principal = {
           Service = "ec2.amazonaws.com"
         }
-      },
+      }
     ]
   })
 
@@ -55,8 +55,7 @@ resource "aws_iam_policy" "policy" {
             ]
           }
         }
-      }
-    ]
+      }    ]
   })
 }
 
