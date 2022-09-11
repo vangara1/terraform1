@@ -1,4 +1,4 @@
-resource "aws_iam_role" "tes-role" {
+resource "aws_iam_role" "test-role" {
   name = "test-role"
 
   # Terraform's "jsonencode" function converts a
