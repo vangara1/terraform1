@@ -53,7 +53,7 @@ resource "aws_subnet" "subnet" {
   map_public_ip_on_launch = "true"
 
   tags = {
-    Name = "${var.name}-sub"
+    Name = "${var.ENV}-sub"
   }
 }
 
@@ -65,7 +65,7 @@ resource "aws_route_table" "RT" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.name}-RT"
+    Name = "${var.ENV}-RT"
   }
 }
 

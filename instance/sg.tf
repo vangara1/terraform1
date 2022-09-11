@@ -38,7 +38,7 @@
 
 
 resource "aws_security_group" "SG" {
-  name        = "${var.name}-SG"
+  name        = "${var.ENV}-SG"
   description = "Allow TLG  inbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
@@ -66,7 +66,7 @@ resource "aws_security_group" "SG" {
   }
 
   tags = {
-    Name = "${var.name}-SG"
+    Name = "${var.ENV}-SG"
   }
 }
 
