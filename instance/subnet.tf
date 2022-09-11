@@ -1,8 +1,8 @@
 resource "aws_subnet" "sandy" {
-  vpc_id     = aws_vpc.sandy.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
-  map_public_ip_on_launch = true
+  vpc_id                                      = aws_vpc.sandy.id
+  cidr_block                                  = "10.0.1.0/24"
+  availability_zone                           = "us-east-1a"
+  map_public_ip_on_launch                     = true
   enable_resource_name_dns_a_record_on_launch = true
 
   tags = {
@@ -28,7 +28,8 @@ resource "aws_route_table" "rt" {
   vpc_id = aws_vpc.sandy.id
 
   route {
-        gateway_id = aws_internet_gateway.gw.id
+    cidr_block = "10.0.1.0/24"
+    gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
     Name = "rt"
