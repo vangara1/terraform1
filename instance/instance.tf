@@ -1,8 +1,24 @@
-resource "aws_instance" "instance" {
-  ami           = "ami-002070d43b0a4f171"
-  instance_type = "t2.micro"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
 
-tags = {
-  Name = "HelloWorld"
 }
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+
+resource "aws_instance" "instance" {
+  ami           = var.ami
+  instance_type = var.ec2-type
+  key_name      = var.key-name
+
+  tags = {
+    Name = "${var.name}"
+  }
 }
