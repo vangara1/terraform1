@@ -10,7 +10,6 @@ resource "aws_instance" "role" {
   iam_instance_profile = "sandy_profile"
   key_name             = "terra"
 
-
   tags = {
     Name = "role"
   }
