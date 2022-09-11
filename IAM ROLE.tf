@@ -20,11 +20,19 @@ resource "aws_iam_role" "role" {
   }
 }
 
-resource "aws_iam_role_policy" "policy" {
-  name = "sandy_policy"
-  role = aws_iam_role.role.id
 
-   policy = jsonencode({
+resource "aws_iam_role_policy_attachment" "attach" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+
+
+resource "aws_iam_policy" "policy" {
+  name = "sandy_policy"
+  path        = "/"
+  description = "sandy policy"
+
+     policy = jsonencode({
      "Version": "2012-10-17",
      "Statement": [
    {
