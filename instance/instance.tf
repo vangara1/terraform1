@@ -20,6 +20,6 @@ resource "aws_instance" "instance" {
   user_data = "${file("install_jenkins.sh")}"
 
   tags = {
-    Name = "${var.ENV}"
+    Name = "instance"
   }
 }
