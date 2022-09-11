@@ -1,5 +1,5 @@
-resource "aws_iam_role" "sandy-admin" {
-  name = "sandy-admin"
+resource "aws_iam_role" "tes-role" {
+  name = "test-role"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
