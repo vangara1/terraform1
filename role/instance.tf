@@ -9,7 +9,7 @@ resource "aws_instance" "role" {
   instance_type = "t2.micro"
   iam_instance_profile = "sandy_profile"
   key_name = "terra"
-  wait_for_connection = true
+
 
   tags = {
     Name = "role"
