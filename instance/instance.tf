@@ -17,6 +17,7 @@ resource "aws_instance" "instance" {
   ami           = var.ami
   instance_type = var.ec2-type
   key_name      = var.key
+  user_data = "${file("install_jenkins.sh")}"
 
   tags = {
     Name = "${var.ENV}"
