@@ -39,6 +39,6 @@ resource "aws_route_table" "rt" {
 
 
 resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.sandy.id
+  subnet_id      = aws_subnet.sandy.cidr_block
   route_table_id = aws_route_table.rt.id
 }
