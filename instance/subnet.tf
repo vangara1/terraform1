@@ -1,3 +1,41 @@
+
+resource "aws_subnet" "subnet" {
+  vpc_id     = aws_vpc.vpc.id
+  availability_zone = "us-east-1a"
+  cidr_block = "190.0.0.0/24"
+  enable_resource_name_dns_a_record_on_launch = "true"
+  map_public_ip_on_launch = "true"
+
+  tags = {
+    Name = "subnet"
+  }
+}
+
+
+resource "aws_route_table" "RT" {
+  vpc_id = aws_vpc.vpc.id
+  route {
+    cidr_block = "192.0.0.0/24"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+  tags = {
+    Name = "RT"
+  }
+}
+
+
+resource "aws_route_table_association" "soundeo-RT" {
+  subnet_id      = aws_subnet.subnet.id
+  route_table_id = aws_route_table.RT.id
+}
+
+
+
+
+
+
+
+
 #resource "aws_subnet" "sandy" {
 #  vpc_id                                      = aws_vpc.sandy.id
 #  cidr_block                                  = "10.0.1.0/24"
@@ -42,38 +80,6 @@
 #  subnet_id      = aws_subnet.sandy.id
 #  route_table_id = aws_route_table.rt.id
 #}
-
-
-
-resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  availability_zone = "us-east-1a"
-  cidr_block = "190.0.0.0/24"
-  enable_resource_name_dns_a_record_on_launch = "true"
-  map_public_ip_on_launch = "true"
-
-  tags = {
-    Name = "subnet"
-  }
-}
-
-
-resource "aws_route_table" "RT" {
-  vpc_id = aws_vpc.vpc.id
-  route {
-    cidr_block = "192.0.0.0/24"
-    gateway_id = aws_internet_gateway.igw.id
-  }
-  tags = {
-    Name = "RT"
-  }
-}
-
-
-resource "aws_route_table_association" "soundeo-RT" {
-  subnet_id      = aws_subnet.subnet.id
-  route_table_id = aws_route_table.RT.id
-}
 
 
 
