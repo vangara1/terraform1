@@ -22,28 +22,29 @@ resource "aws_instance" "instance" {
   }
 }
 
-provisioner "remote-exec" {
-  inline = [
-    "sudo yum install -y jenkins java-11-openjdk-devel",
-    "sudo yum -y install wget",
-    "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
-    "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
-    "sudo yum upgrade -y",
-    "sudo yum install jenkins -y",
-    "sudo systemctl start jenkins",
-  ]
-}
-connection {
-  type        = "ssh"
-  host        = aws_subnet.subnet.cidr_block
-  user        = "centos"
-  private_key = file("/home/centos/instance/key.pem")
-}
+resource "null_resource" "jenkins" {
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum install -y jenkins java-11-openjdk-devel",
+      "sudo yum -y install wget",
+      "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
+      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
+      "sudo yum upgrade -y",
+      "sudo yum install jenkins -y",
+      "sudo systemctl start jenkins",
+    ]
+  }
+  connection {
+    type        = "ssh"
+    host        = aws_subnet.subnet.cidr_block
+    user        = "centos"
+    private_key = file("/home/centos/instance/key.pem")
+  }
 
-tags = {
-  "Name"      = "Jenkins"
+  tags = {
+    "Name" = "Jenkins"
+  }
 }
-
 
 resource "aws_key_pair" "key" {
 key_name   = "key"
