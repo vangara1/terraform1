@@ -25,13 +25,10 @@ resource "aws_instance" "instance" {
 resource "null_resource" "jenkins" {
   provisioner "remote-exec" {
     inline = [
-      "sudo yum install -y jenkins java-11-openjdk-devel",
-      "sudo yum -y install wget",
+      "sudo yum install -y jenkins java-11-openjdk-devel", "sudo yum -y install wget",
       "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
-      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
-      "sudo yum upgrade -y",
-      "sudo yum install jenkins -y",
-      "sudo systemctl start jenkins",
+      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key", "sudo yum upgrade -y",
+      "sudo yum install jenkins -y", "sudo systemctl start jenkins",
     ]
   }
   connection {
@@ -39,18 +36,19 @@ resource "null_resource" "jenkins" {
     host        = aws_subnet.subnet.cidr_block
     user        = "centos"
     private_key = tls_private_key.rsa.private_key_pem
+    wait        = "500"
   }
 }
 
 resource "aws_key_pair" "key" {
-key_name   = "key"
-public_key = tls_private_key.rsa.public_key_openssh
+  key_name   = "key"
+  public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "tls_private_key" "rsa" {
-algorithm = "RSA"
-rsa_bits  = 4096
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
 resource "local_file" "key" {
-content = tls_private_key.rsa.private_key_pem
-filename = "key"
+  content  = tls_private_key.rsa.private_key_pem
+  filename = "key"
 }
