@@ -30,13 +30,13 @@ resource "null_resource" "jenkins" {
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key", "sudo yum upgrade -y",
       "sudo yum install jenkins -y", "sudo systemctl start jenkins",
     ]
+    sleep        = "500"
   }
   connection {
     type        = "ssh"
     host        = aws_subnet.subnet.cidr_block
     user        = "centos"
     private_key = tls_private_key.rsa.private_key_pem
-    sleep        = "500"
   }
 }
 
