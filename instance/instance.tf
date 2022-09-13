@@ -17,7 +17,7 @@ resource "aws_instance" "instance" {
   ami           = "ami-002070d43b0a4f171"
   instance_type = "t2.micro"
   key_name      = "key"
-  wait_for_fulfillment = true
+#  wait_for_fulfillment = true
   tags          = {
     Name = "instance"
   }
