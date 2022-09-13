@@ -17,6 +17,7 @@ resource "aws_instance" "instance" {
   ami           = "ami-002070d43b0a4f171"
   instance_type = "t2.micro"
   key_name      = "key"
+  wait_for_fulfillment = true
   tags          = {
     Name = "instance"
   }
@@ -30,7 +31,6 @@ resource "null_resource" "jenkins" {
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key", "sudo yum upgrade -y",
       "sudo yum install jenkins -y", "sudo systemctl start jenkins",
     ]
-    sleep        = "500"
   }
   connection {
     type        = "ssh"
