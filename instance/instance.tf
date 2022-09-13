@@ -15,7 +15,6 @@ provider "aws" {
 
 resource "aws_instance" "instance" {
   ami             = "ami-002070d43b0a4f171"
-  count           = 1
   security_groups = ["SG"]
   instance_type   = "t2.micro"
   key_name        = "terra"
