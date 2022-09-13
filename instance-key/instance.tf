@@ -23,7 +23,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_key_pair" "key" {
   key_name   = "key"
-  public_key = tls_private_key.rsa.public_key_pem
+  public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "tls_private_key" "rsa" {
   algorithm = "RSA"
