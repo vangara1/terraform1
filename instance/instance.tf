@@ -38,11 +38,7 @@ resource "null_resource" "jenkins" {
     type        = "ssh"
     host        = aws_subnet.subnet.cidr_block
     user        = "centos"
-    private_key = file("/home/centos/instance/key.pem")
-  }
-
-  tags = {
-    "Name" = "Jenkins"
+    private_key = file("./key.pem")
   }
 }
 
