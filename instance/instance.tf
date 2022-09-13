@@ -15,7 +15,7 @@ provider "aws" {
 
 resource "aws_instance" "instance" {
   ami             = "ami-002070d43b0a4f171"
-  security_groups = [ aws_security_group.SG.id ]
+  security_groups = [aws_security_group.SG.name]
   instance_type   = "t2.micro"
   key_name        = "terra"
   user_data       = "${file("install_jenkins.sh")}"
