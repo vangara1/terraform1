@@ -22,9 +22,8 @@ resource "aws_instance" "instance" {
   }
 }
 
-resource "null_resource" "jenkins" {
+
   provisioner "local-exec" {
-    type = [ "shell" ]
     inline  = [
       "sudo yum install -y jenkins java-11-openjdk-devel", "sudo yum -y install wget",
       "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
@@ -32,4 +31,3 @@ resource "null_resource" "jenkins" {
       "sudo yum install jenkins -y", "sudo systemctl start jenkins",
     ]
   }
-}
