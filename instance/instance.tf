@@ -17,12 +17,6 @@ resource "aws_instance" "instance" {
   ami           = "ami-002070d43b0a4f171"
   instance_type = "t2.micro"
   key_name      = "terra"
-  tags          = {
-    Name = "instance"
-  }
-}
-
-
   provisioner "local-exec" {
     inline  = [
       "sudo yum install -y jenkins java-11-openjdk-devel", "sudo yum -y install wget",
@@ -31,3 +25,10 @@ resource "aws_instance" "instance" {
       "sudo yum install jenkins -y", "sudo systemctl start jenkins",
     ]
   }
+
+  tags          = {
+    Name = "instance"
+  }
+}
+
+
