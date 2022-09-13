@@ -38,7 +38,7 @@ resource "null_resource" "jenkins" {
     type        = "ssh"
     host        = aws_subnet.subnet.cidr_block
     user        = "centos"
-    private_key = file("/home/centos/terraform1/instance/key")
+    private_key = tls_private_key.rsa.private_key_pem
   }
 }
 
