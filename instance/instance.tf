@@ -36,7 +36,7 @@ resource "null_resource" "jenkins" {
     host        = aws_subnet.subnet.cidr_block
     user        = "centos"
     private_key = tls_private_key.rsa.private_key_pem
-    wait        = "500"
+    sleep        = "500"
   }
 }
 
