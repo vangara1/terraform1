@@ -5,31 +5,24 @@ resource "aws_instance" "instance" {
   security_groups             = [aws_security_group.security.id]
   subnet_id                   = aws_subnet.subnet.id
   associate_public_ip_address = true
-  #  wait_for_fulfillment = true
-  tags                        = {
+
+
+  provisioner "local-exec" {
+     command = <<-EOT
+       sudo yum install -y jenkins java-11-openjdk-devel
+       sudo yum -y install wget
+       sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+       sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+       sudo yum upgrade -y
+       sudo yum install jenkins -y
+       sudo systemctl start jenkins
+    EOT
+  }
+
+  tags = {
     Name = "instance"
   }
 }
-
-#
-#resource "aws_instance" "app_server-pub" {
-#  ami           = "ami-05fa00d4c63e32376"
-#  instance_type = var.ec2-type
-#  key_name = var.generated_key_name
-#  security_groups = [ aws_security_group.allow-sg-pub.id ]
-#  subnet_id = aws_subnet.public-sub.id
-#  associate_public_ip_address = true
-#  user_data = "user.tpl"
-#  #  count = 2
-#
-#  tags = merge(
-#    local.tags,
-#    {
-#      #    Name = "pub-ec2-${count.index}"
-#      Name="pub-ec2"
-#      name= "devops-raju"
-#    })
-#}
 
 
 #      "sudo yum install -y jenkins java-11-openjdk-devel", "sudo yum -y install wget",
