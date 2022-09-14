@@ -18,8 +18,9 @@ resource "aws_instance" "instance" {
   instance_type          = "t2.micro"
   key_name               = "terra"
   vpc_security_group_ids = [ aws_security_group.SG.id ]
-#  subnet_id              =  [ aws_subnet.subnet.id ]
-  #  wait_for_fulfillment = true
+  subnet_id              =  [ aws_subnet.subnet.id ]
+  associate_public_ip_address = true
+#  wait_for_fulfillment = true
   tags                   = {
     Name = "instance"
   }
