@@ -10,13 +10,13 @@ resource "aws_security_group" "security" {
     protocol    = "tcp"
     cidr_blocks = [aws_subnet.subnet.cidr_block]
   }
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [aws_subnet.subnet.cidr_block]
-  }
+#  ingress {
+#    description = "TLS from VPC"
+#    from_port   = 22
+#    to_port     = 22
+#    protocol    = "tcp"
+#    cidr_blocks = [aws_subnet.subnet.cidr_block]
+#  }
   ingress {
     description = "TLS from VPC"
     from_port   = 80
