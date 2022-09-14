@@ -1,5 +1,5 @@
-resource "aws_security_group" "SG" {
-  name        = "SG"
+resource "aws_security_group" "security" {
+  name        = "Security"
   description = "Allow TLG  inbound traffic"
   vpc_id      = aws_vpc.sandy.id
 
@@ -40,7 +40,7 @@ resource "aws_security_group" "SG" {
   }
 
   tags = {
-    Name = "SG"
+    Name = "security"
   }
 }
 
@@ -48,8 +48,8 @@ resource "aws_security_group" "SG" {
 #output "aws_security_group" {
 #  value = aws_security_group.SG.id
 #}
-#
-#resource "aws_network_interface_sg_attachment" "sg_attachment" {
-#  security_group_id    = module.aws_security_group.security_group_id
-#  network_interface_id = aws_instance.instance.primary_network_interface_id
-#}
+
+resource "aws_network_interface_sg_attachment" "sg_attachment" {
+  security_group_id    = aws_security_group.security.id
+  network_interface_id = aws_instance.instance.primary_network_interface_id
+}
