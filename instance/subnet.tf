@@ -1,5 +1,5 @@
 resource "aws_subnet" "subnet" {
-  vpc_id                                      = aws_vpc.vpc.id
+  vpc_id                                      = aws_vpc.sandy.id
   availability_zone                           = "us-east-1b"
   cidr_block                                  = "190.0.0.0/24"
   enable_resource_name_dns_a_record_on_launch = "true"
@@ -12,7 +12,7 @@ resource "aws_subnet" "subnet" {
 
 
 resource "aws_route_table" "RT" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.sandy.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id

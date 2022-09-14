@@ -1,4 +1,4 @@
-resource "aws_vpc" "vpc" {
+resource "aws_vpc" "sandy" {
   cidr_block           = "190.0.0.0/16"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
@@ -9,7 +9,7 @@ resource "aws_vpc" "vpc" {
 
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.sandy.id
 
   tags = {
     Name = "igw"
