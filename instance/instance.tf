@@ -14,12 +14,13 @@ provider "aws" {
 
 
 resource "aws_instance" "instance" {
-  ami             = "ami-002070d43b0a4f171"
-  instance_type   = "t2.micro"
-  key_name        = "terra"
-  security_group = [aws_security_group.SG.*.id]
+  ami                    = "ami-002070d43b0a4f171"
+  instance_type          = "t2.micro"
+  key_name               = "terra"
+  vpc_security_group_ids = [aws_security_group.SG.id]
+  subnet_id              = [aws_subnet.subnet.id]
   #  wait_for_fulfillment = true
-  tags            = {
+  tags                   = {
     Name = "instance"
   }
 }
