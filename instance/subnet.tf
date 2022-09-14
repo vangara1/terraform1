@@ -1,7 +1,7 @@
 resource "aws_subnet" "subnet" {
   vpc_id                                      = aws_vpc.vpc.id
   availability_zone                           = "us-east-1"
-  cidr_block                                  = var.public_subnet_cidr_blocks
+  cidr_block                                  = "190.0.0.0/24"
   enable_resource_name_dns_a_record_on_launch = "true"
   map_public_ip_on_launch                     = "true"
 
