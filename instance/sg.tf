@@ -37,18 +37,3 @@ resource "aws_security_group" "security" {
   }
 }
 
-resource "aws_key_pair" "inst-key" {
-  key_name   = "login"
-  public_key = tls_private_key.instance-key.public_key_openssh
-}
-
-resource "tls_private_key" "instance-key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-provisioner "local-exec" {
-  command = <<-EOT
-      sudo echo '${tls_private_key.instance-key.private_key_pem}' > ./vi'${login}'.pem
-      sudo chmod 400 ./'${login}'.pem
-    EOT
-}
