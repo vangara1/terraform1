@@ -1,7 +1,7 @@
 module "vote_service_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "sg-service"
+  name        = "terra-sg-service"
   description = "Security group with custom ports open within VPC"
   vpc_id      = var.vpc_id
 
