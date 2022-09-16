@@ -1,26 +1,11 @@
 resource "aws_vpc" "sandy" {
-  cidr_block           = "190.0.0.0/16"
+  cidr_block           = var.vpc_id
   enable_dns_hostnames = "true"
   instance_tenancy = "default"
   tags                 = {
-    Name = "sandy"
+    Name = "${var.name}-sandy"
   }
 }
 
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.sandy.id
 
-  tags = {
-    Name = "igw"
-  }
-}
-
-#
-#resource "aws_internet_gateway_attachment" "soundeo-igw-attachment" {
-#  internet_gateway_id = aws_internet_gateway.soundeo-igw.id
-#  vpc_id              = aws_vpc.soundeo-vpc.id
-#  tags = {
-#    Name = "soundeo-igw-attachment"
-#  }
-#}
