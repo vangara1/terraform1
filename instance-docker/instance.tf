@@ -1,7 +1,9 @@
-resource "aws_s3_bucket" "bucket" {
-  bucket = "terra-0700009"
-  tags = {
-    Name        = "${var.name}-bucket"
+terraform {
+  required_version = ">=0.12"
+  backend "s3" {
+    bucket = "terra-0700009"
+    key = "bucket/state"
+    region = "us-east-1"
   }
 }
 
