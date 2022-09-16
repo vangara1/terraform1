@@ -4,4 +4,3 @@ variable "az" {}
 variable "name" {}
 variable "ami" {}
 variable "instance" {}
-variable "ip" {}
