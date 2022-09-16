@@ -26,5 +26,3 @@ resource "aws_subnet" "subnet" {
 
 
 
-
-
