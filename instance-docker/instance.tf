@@ -1,7 +1,7 @@
 terraform {
   required_version = ">=0.12"
   backend "s3" {
-    bucket = "terra-0700009"
+    bucket = "terra-07009"
     key = "bucket/state"
     region = "us-east-1"
   }
