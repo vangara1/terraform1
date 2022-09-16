@@ -15,14 +15,15 @@ resource "aws_instance" "instance" {
 }
 
 
-resource "aws_key_pair" "inst-key" {
-  key_name   = "login"
-  public_key = tls_private_key.instance-key.public_key_openssh
-}
 
 resource "tls_private_key" "instance-key" {
   algorithm = "RSA"
   rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "inst-key" {
+  key_name   = "login"
+  public_key = tls_private_key.instance-key.public_key_openssh
 
   provisioner "local-exec" {
     command = <<-EOT
