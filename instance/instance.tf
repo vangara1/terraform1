@@ -27,16 +27,11 @@ resource "aws_instance" "instance" {
     Name = "${var.name}-instance"
   }
 }
+#
+#output "private-ip" {
+#  value = aws_instance.instance.private_ip
+#}
 
-output "private-ip" {
-  value = aws_instance.instance.private_ip
-}
-locals {
-  private = concat(aws_instance.instance.private_ip)
-  tags={
-    Name = "${var.name}-local"
-  }
-}
 #resource "aws_key_pair" "key" {
 #  key_name   = "key"
 #  public_key = tls_private_key.rsa.public_key_openssh
