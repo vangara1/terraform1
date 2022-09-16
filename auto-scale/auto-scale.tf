@@ -5,25 +5,25 @@
 #  protocol = "HTTP"
 #  vpc_id   = module.vpc.vpc_id
 #}
+##
+#resource "aws_launch_configuration" "lunch-terra" {
+#  name_prefix     = "lunch-terra"
+#  image_id        = var.ami
+#  instance_type   = var.instance
+#  security_groups = var.
 #
-resource "aws_launch_configuration" "lunch-terra" {
-  name_prefix     = "lunch-terra"
-  image_id        = var.ami
-  instance_type   = var.instance
-  security_groups = [module.vote_service_sg]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_autoscaling_group" "auto" {
-  min_size             = 1
-  max_size             = 3
-  desired_capacity     = 1
-  launch_configuration = aws_launch_configuration.lunch-terra.name
-  vpc_zone_identifier  = module.vpc.public_subnets
-}
+#  lifecycle {
+#    create_before_destroy = true
+#  }
+#}
+#
+#resource "aws_autoscaling_group" "auto" {
+#  min_size             = 1
+#  max_size             = 3
+#  desired_capacity     = 1
+#  launch_configuration = aws_launch_configuration.lunch-terra.name
+#  vpc_zone_identifier  = module.vpc.public_subnets
+#}
 
 #resource "aws_lb" "terramino" {
 #  name               = "learn-asg-terramino-lb"
