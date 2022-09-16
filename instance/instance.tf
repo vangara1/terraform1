@@ -1,6 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = "terra-07009"
-  region = "us-east-1"
   tags = {
     Name        = "${var.name}-bucket"
   }
