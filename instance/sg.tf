@@ -8,21 +8,21 @@ resource "aws_security_group" "security" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.my-ip]
+    cidr_blocks = [var.subnet_cidr]
   }
   ingress {
     description = "TLS from VPC"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [var.my-ip]
+    cidr_blocks = [var.subnet_cidr]
   }
   ingress {
     description = "TLS from VPC"
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [var.my-ip]
+    cidr_blocks = [var.subnet_cidr]
   }
 
   egress {

@@ -28,6 +28,9 @@ resource "aws_instance" "instance" {
   }
 }
 
+output "my-ip" {
+  value = aws_instance.instance.private_ip
+}
 
 #resource "aws_key_pair" "key" {
 #  key_name   = "key"

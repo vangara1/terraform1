@@ -4,4 +4,4 @@ az          = "us-east-1b"
 name        = "production"
 ami         = "ami-002070d43b0a4f171"
 instance    = "t2.micro"
-my-ip       = aws_instance.instance.private_ip
+#my-ip       = data.my-ip
