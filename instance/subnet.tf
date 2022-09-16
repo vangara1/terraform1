@@ -1,5 +1,5 @@
 resource "aws_subnet" "subnet" {
-  vpc_id                                      = var.vpc_id
+  vpc_id                                      = aws_vpc.sandy.id
   availability_zone                           = var.az
   cidr_block                                  = var.subnet_cidr
   enable_resource_name_dns_a_record_on_launch = "true"

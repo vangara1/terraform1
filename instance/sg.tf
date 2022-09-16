@@ -1,7 +1,7 @@
 resource "aws_security_group" "security" {
   name        = "Security"
   description = "Allow TLG  inbound traffic"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.sandy.id
 
   ingress {
     description = "TLS from VPC"

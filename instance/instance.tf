@@ -24,7 +24,7 @@ resource "aws_instance" "instance" {
   #    EOF
 
   tags = {
-    Name = "instance"
+    Name = "${var.name}instance"
   }
 }
 
