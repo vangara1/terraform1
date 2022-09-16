@@ -6,26 +6,25 @@
 #  vpc_id   = module.vpc.vpc_id
 #}
 #
-#resource "aws_launch_configuration" "terramino" {
-#  name_prefix     = "learn-terraform-aws-asg-"
-#  image_id        = data.aws_ami.amazon-linux.id
-#  instance_type   = "t2.micro"
-#  user_data       = file("user-data.sh")
-#  security_groups = [aws_security_group.terramino_instance.id]
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
-#
-#resource "aws_autoscaling_group" "terramino" {
-#  min_size             = 1
-#  max_size             = 3
-#  desired_capacity     = 1
-#  launch_configuration = aws_launch_configuration.terramino.name
-#  vpc_zone_identifier  = module.vpc.public_subnets
-#}
-#
+resource "aws_launch_configuration" "lunch-terra" {
+  name_prefix     = "lunch-terra"
+  image_id        = var.ami
+  instance_type   = var.instance
+  security_groups = [module.vote_service_sg.id]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_autoscaling_group" "auto" {
+  min_size             = 1
+  max_size             = 3
+  desired_capacity     = 1
+  launch_configuration = aws_launch_configuration.lunch-terra.name
+  vpc_zone_identifier  = module.vpc.public_subnets
+}
+
 #resource "aws_lb" "terramino" {
 #  name               = "learn-asg-terramino-lb"
 #  internal           = false
