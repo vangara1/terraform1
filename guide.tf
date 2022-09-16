@@ -367,33 +367,6 @@ locals {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 resource "aws_subnet" "private-subnet" {
   depends_on        = [aws_vpc_ipv4_cidr_block_association.addon]
   count             = length(var.PRIVATE_SUBNETS)
