@@ -33,6 +33,9 @@ output "private-ip" {
 }
 locals {
   private = concat(aws_instance.instance.private_ip)
+  tags={
+    Name = "${var.name}-local"
+  }
 }
 #resource "aws_key_pair" "key" {
 #  key_name   = "key"
