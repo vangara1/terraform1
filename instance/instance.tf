@@ -10,11 +10,11 @@ resource "aws_instance" "instance" {
     user_data = <<EOF
           #!/bin/bash
           sudo yum update -y
-sudo yum install docker -y
-sudo systemctl enable docker
-sudo systemctl start docker
-sudo docker pull nginx
-sudo docker run -p 8080:80 --name=my-nginx nginx
+          sudo yum install docker -y
+          sudo systemctl enable docker
+          sudo systemctl start docker
+          sudo docker pull nginx
+          sudo docker run -p 8080:80 --name=my-nginx nginx
       EOF
 
   tags = {
