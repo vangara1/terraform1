@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "terra-07009"
+  bucket = "terra-0700009"
   tags = {
     Name        = "${var.name}-bucket"
   }
