@@ -4,4 +4,4 @@ variable "az" {}
 variable "name" {}
 variable "ami" {}
 variable "instance" {}
-variable "my-ip" {}
+#variable "my-ip" {}
