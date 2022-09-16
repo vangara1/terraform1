@@ -10,11 +10,7 @@ resource "aws_instance" "instance" {
     user_data = <<EOF
           #!/bin/bash
           sudo yum update -y
-          sudo yum install -y yum-utils
-sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+sudo yum install docker -y
 sudo systemctl enable docker
 sudo systemctl start docker
 sudo docker pull nginx
