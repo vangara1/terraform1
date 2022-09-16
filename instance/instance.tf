@@ -10,9 +10,12 @@ resource "aws_instance" "instance" {
   provisioner "local-exec" {
     command = <<-EOT
 #!/bin/bash
-sudo yum install java-1.8.0-openjdk-devel -y
-sudo curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install wget -y
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum upgrade -y
+sudo yum install java-11-openjdk-devel -y
 sudo yum install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
@@ -43,5 +46,9 @@ resource "aws_key_pair" "inst-key" {
     EOT
   }
 }
+
+
+
+
 
 
