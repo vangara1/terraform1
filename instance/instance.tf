@@ -27,7 +27,7 @@ resource "aws_key_pair" "inst-key" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      sudo echo '${tls_private_key.instance-key.private_key_pem}' > ./vi'${var.inst-key}'.pem
+      sudo echo '${tls_private_key.instance-key.private_key_pem}' > ./'${var.inst-key}'.pem
       sudo chmod 400 ./'${var.inst-key}'.pem
     EOT
   }
