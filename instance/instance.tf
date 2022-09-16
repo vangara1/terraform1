@@ -6,22 +6,20 @@ resource "aws_instance" "instance" {
   subnet_id                   = aws_subnet.subnet.id
   associate_public_ip_address = true
 
-  #
-  #  user_data = <<EOF
-  #        #!/bin/bash
-  #        sudo yum update -y
-  #        sudo yum install wget -y
-  #        sudo wget -O /etc/yum.repos.d/jenkins.repo \
-  #            https://pkg.jenkins.io/redhat-stable/jenkins.repo
-  #        sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-  #        sudo yum upgrade -y
-  #        sudo yum install java-11-openjdk -y
-  #        sudo yum install jenkins -y
-  #        sudo systemctl daemon-reload
-  #        sudo systemctl enable jenkins
-  #        sudo systemctl start jenkins
-  #        sudo systemctl status jenkins
-  #    EOF
+
+    user_data = <<EOF
+          #!/bin/bash
+          sudo yum update -y
+          sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo docker pull nginx
+sudo docker run -p 8080:80 --name=my-nginx nginx
+      EOF
 
   tags = {
     Name = "${var.name}-instance"
