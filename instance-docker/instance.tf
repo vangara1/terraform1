@@ -31,7 +31,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo systemctl status docker
 sudo docker pull nginx
-sudo docker run -d -p 8080:80 --name my-nginx nginx
+sudo docker run -d -p 8040:80 --name my-nginx nginx
 sudo docker ps
 sudo docker ps -a
     EOT
