@@ -8,8 +8,8 @@ resource "aws_lb" "alb" {
   enable_deletion_protection = true
 
   access_logs {
-    bucket  = aws_s3_bucket.bucket
-    prefix  = "test-lb"
+    bucket  = aws_s3_bucket.bucket.bucket
+    prefix  = "alb"
     enabled = true
   }
 
