@@ -3,7 +3,7 @@ module "vote_service_sg" {
 
   name        = "sg-service"
   description = "Security group with custom ports open within VPC"
-  vpc_id      = module.vpc.id
+  vpc_id      = module.vpc
 
   ingress_cidr_blocks      = ["0.0.0.0/0"]
   ingress_rules            = ["tcp"]

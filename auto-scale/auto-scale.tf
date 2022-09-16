@@ -10,7 +10,7 @@ resource "aws_launch_configuration" "lunch-terra" {
   name_prefix     = "lunch-terra"
   image_id        = var.ami
   instance_type   = var.instance
-  security_groups = [module.vote_service_sg.id]
+  security_groups = [module.vote_service_sg]
 
   lifecycle {
     create_before_destroy = true
